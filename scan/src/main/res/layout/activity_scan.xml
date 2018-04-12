@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/wx_topbar_bg_color"
+             android:fitsSystemWindows="true">
+
+    <cn.bingoogolapple.qrcode.zxing.ZXingView
+        android:id="@+id/zxingview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:qrcv_animTime="@integer/qrcv_animTime"
+        app:qrcv_borderColor="@android:color/white"
+        app:qrcv_borderSize="@dimen/qrcv_borderSize"
+        app:qrcv_cornerColor="@color/qrcv_cornerColor"
+        app:qrcv_cornerLength="@dimen/qrcv_cornerLength"
+        app:qrcv_cornerSize="@dimen/qrcv_cornerSize"
+        app:qrcv_customScanLineDrawable="@drawable/scan_line"
+        app:qrcv_isOnlyDecodeScanBoxArea="true"
+        app:qrcv_isShowTipTextAsSingleLine="true"
+        app:qrcv_isTipTextBelowRect="true"
+        app:qrcv_maskColor="@color/qrcv_maskColor"
+        app:qrcv_qrCodeTipText="@string/qrcv_qrCodeTipText"
+        app:qrcv_rectWidth="@dimen/qrcv_rectWidth"
+        app:qrcv_tipTextColor="@color/qrcv_tipTextColor"
+        app:qrcv_tipTextMargin="@dimen/qrcv_tipTextMargin"
+        app:qrcv_tipTextSize="@dimen/qrcv_tipTextSize"
+        app:qrcv_topOffset="@dimen/qrcv_topOffset"/>
+
+    <include layout="@layout/wx_top_bar"/>
+
+</FrameLayout>

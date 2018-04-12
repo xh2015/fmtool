@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--scan-->
+    <dimen name="qrcv_borderSize">0.4dp</dimen>
+    <dimen name="qrcv_rectWidth">220dp</dimen>
+    <dimen name="qrcv_topOffset">120dp</dimen>
+    <dimen name="qrcv_cornerLength">28dp</dimen>
+    <dimen name="qrcv_tipTextMargin">30dp</dimen>
+    <dimen name="qrcv_cornerSize">3dp</dimen>
+    <dimen name="qrcv_tipTextSize">14sp</dimen>
+    <!--top bar-->
+    <dimen name="wx_topbar_title_size">18sp</dimen>
+    <dimen name="wx_topbar_line_size">2px</dimen>
+    <dimen name="wx_topbar_padding">12dp</dimen>
+    <dimen name="wx_topbar_margin">12dp</dimen>
+    <dimen name="wx_topbar_btn_size">48dp</dimen>
+</resources>

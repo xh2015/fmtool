@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">scan</string>
+    <!--topbar-->
+    <string name="wx_topbar_back_icon">&#xe78a;</string>
+    <string name="wx_topbar_flashlight_off_icon">&#xe937;</string>
+    <string name="wx_topbar_flashlight_on_icon">&#xe938;</string>
+    <string name="wx_topbar_pic_icon">&#xe62f;</string>
+    <!--scan-->
+    <string name="wx_topbar_title_scan">QRCode Scan</string>
+    <string name="qrcv_qrCodeTipText">Align the QR Code within the frame to scan</string>
 </resources>

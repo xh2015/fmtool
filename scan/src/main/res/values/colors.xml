@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--top bar-->
+    <color name="wx_topbar_bg_color">#393A3F</color>
+    <color name="wx_topbar_back_press_color">#323336</color>
+    <color name="wx_topbar_line_color">#2E2E32</color>
+    <color name="wx_topbar_font_color">#ffffff</color>
+    <!--scan-->
+    <color name="qrcv_cornerColor">#76EE00</color>
+    <color name="qrcv_maskColor">#88000000</color>
+    <color name="qrcv_tipTextColor">#C4C4C4</color>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/wx_topbar_bg_color">
+
+    <com.fm.tool.scan.view.FMIconfontView
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/wx_topbar_btn_size"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:background="@drawable/selector_wx_topbar_back_press"
+        android:gravity="center"
+        android:padding="@dimen/wx_topbar_padding"
+        android:text="@string/wx_topbar_back_icon"
+        android:textColor="@color/wx_topbar_font_color"
+        android:textSize="@dimen/wx_topbar_title_size"/>
+
+    <View
+        android:layout_width="@dimen/wx_topbar_line_size"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/wx_topbar_margin"
+        android:layout_marginTop="@dimen/wx_topbar_margin"
+        android:layout_toRightOf="@id/btn_back"
+        android:background="@color/wx_topbar_line_color"/>
+
+    <TextView
+        android:id="@+id/tv_des"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/wx_topbar_margin"
+        android:layout_toRightOf="@id/btn_back"
+        android:text="@string/wx_topbar_title_scan"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/wx_topbar_font_color"
+        android:textSize="@dimen/wx_topbar_title_size"/>
+
+    <com.fm.tool.scan.view.FMIconfontView
+        android:id="@+id/btn_flashlight"
+        android:layout_width="@dimen/wx_topbar_btn_size"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/selector_wx_topbar_back_press"
+        android:gravity="center"
+        android:padding="@dimen/wx_topbar_padding"
+        android:text="@string/wx_topbar_flashlight_off_icon"
+        android:textColor="@color/wx_topbar_font_color"
+        android:textSize="@dimen/wx_topbar_title_size"/>
+
+    <com.fm.tool.scan.view.FMIconfontView
+        android:id="@+id/btn_pic"
+        android:layout_width="@dimen/wx_topbar_btn_size"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/btn_flashlight"
+        android:background="@drawable/selector_wx_topbar_back_press"
+        android:gravity="center"
+        android:padding="@dimen/wx_topbar_padding"
+        android:text="@string/wx_topbar_pic_icon"
+        android:textColor="@color/wx_topbar_font_color"
+        android:textSize="@dimen/wx_topbar_title_size"
+        android:visibility="gone"/>
+</RelativeLayout>
