@@ -33,7 +33,7 @@ public class FMIconfontView extends AppCompatTextView {
 
     private void initFont() {
         if (__cachedTypeFace == null) {
-            final Typeface iconfont = Typeface.createFromAsset(getContext().getAssets(), "iconfont.ttf");
+            final Typeface iconfont = Typeface.createFromAsset(getContext().getAssets(), "iconfontscan.ttf");
             __cachedTypeFace = iconfont;
         }
         setTypeface(__cachedTypeFace);
