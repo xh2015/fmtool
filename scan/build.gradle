@@ -30,7 +30,7 @@ android {
             repository(url: "http://192.168.1.146:8080/nexus/content/repositories/com.fm.app/") {
                 authentication(userName: "admin", password: "admin123")
             }
-            pom.version = "0.0.1"
+            pom.version = "1.0.0"
             pom.artifactId = "scan"
             pom.groupId = "com.fm.app"
         }
