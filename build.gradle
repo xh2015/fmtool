@@ -17,7 +17,7 @@ allprojects {
         jcenter()
         mavenLocal()
         maven {
-            url "http://192.168.1.146:8080/nexus/content/repositories/com.fm.app/"
+            url "http://192.168.1.146:8080/nexus/content/repositories/com.fm.app.lib/"
         }
     }
 }

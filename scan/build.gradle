@@ -27,12 +27,12 @@ android {
         //仓库基于maven
         repositories.mavenDeployer {
             //配置上传的url
-            repository(url: "http://192.168.1.146:8080/nexus/content/repositories/com.fm.app/") {
+            repository(url: "http://192.168.1.146:8080/nexus/content/repositories/com.fm.app.lib/") {
                 authentication(userName: "admin", password: "admin123")
             }
             pom.version = "1.0.0"
             pom.artifactId = "scan"
-            pom.groupId = "com.fm.app"
+            pom.groupId = "com.fm.app.lib"
         }
     }
 }
