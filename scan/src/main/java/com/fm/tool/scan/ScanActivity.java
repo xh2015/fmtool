@@ -1,12 +1,16 @@
 package com.fm.tool.scan;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 
@@ -45,7 +49,18 @@ public class ScanActivity extends FragmentActivity implements QRCodeView.Delegat
         setContentView(R.layout.activity_scan);
         StatusBarUtils.setTransparentStatusBar(this);
         AppUtils.syncIsDebug(getApplicationContext());
+        //权限初始化
+        initPermission();
+        //界面控件初始化
         initView();
+    }
+
+    private void initPermission() {
+        //请求Camera权限 与 文件读写 权限
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 1);
+        }
     }
 
     private void initView() {
