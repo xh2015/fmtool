@@ -1,228 +1,151 @@
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in /Users/gary/Library/Android/sdk/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the proguardFiles
-# directive in build.gradle.
+#############################################
 #
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# 对于一些基本指令的添加
+#
+#############################################
+# 代码混淆压缩比，在0~7之间，默认为5，一般不做修改
+-optimizationpasses 5
 
-# Add any project specific keep options here:
+# 混合时不使用大小写混合，混合后的类名为小写
+-dontusemixedcaseclassnames
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# 指定不去忽略非公共库的类
+-dontskipnonpubliclibraryclasses
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# 这句话能够使我们的项目混淆后产生映射文件
+# 包含有类名->混淆后类名的映射关系
+-verbose
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# 指定不去忽略非公共库的类成员
+-dontskipnonpubliclibraryclassmembers
 
--optimizationpasses 5          # 指定代码的压缩级别
--dontusemixedcaseclassnames   # 是否使用大小写混合
--dontpreverify           # 混淆时是否做预校验
--verbose                # 混淆时是否记录日志
+# 不做预校验，preverify是proguard的四个步骤之一，Android不需要preverify，去掉这一步能够加快混淆速度。
+-dontpreverify
 
--optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  # 混淆时所采用的算法
+# 保留Annotation不混淆
+-keepattributes *Annotation*,InnerClasses
 
--keep public class * extends android.app.Activity      # 保持哪些类不被混淆
--keep public class * extends android.app.Application   # 保持哪些类不被混淆
--keep public class * extends android.app.Service       # 保持哪些类不被混淆
--keep public class * extends android.content.BroadcastReceiver  # 保持哪些类不被混淆
--keep public class * extends android.content.ContentProvider    # 保持哪些类不被混淆
--keep public class * extends android.app.backup.BackupAgentHelper # 保持哪些类不被混淆
--keep public class * extends android.preference.Preference        # 保持哪些类不被混淆
--keep public class com.android.vending.licensing.ILicensingService    # 保持哪些类不被混淆
+# 避免混淆泛型
+-keepattributes Signature
 
--keepclasseswithmembernames class * {  # 保持 native 方法不被混淆
+# 抛出异常时保留代码行号
+-keepattributes SourceFile,LineNumberTable
+
+# 指定混淆是采用的算法，后面的参数是一个过滤器
+# 这个过滤器是谷歌推荐的算法，一般不做更改
+-optimizations !code/simplification/cast,!field/*,!class/merging/*
+
+
+#############################################
+#
+# Android开发中一些需要保留的公共部分
+#
+#############################################
+
+# 保留我们使用的四大组件，自定义的Application等等这些类不被混淆
+# 因为这些子类都有可能被外部调用
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Appliction
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class * extends android.view.View
+-keep public class com.android.vending.licensing.ILicensingService
+
+
+# 保留support下的所有类及其内部类
+-keep class android.support.** {*;}
+
+# 保留继承的
+-keep public class * extends android.support.v4.**
+-keep public class * extends android.support.v7.**
+-keep public class * extends android.support.annotation.**
+
+# 保留R下面的资源
+-keep class **.R$* {*;}
+
+# 保留本地native方法不被混淆
+-keepclasseswithmembernames class * {
     native <methods>;
 }
--keepclasseswithmembers class * {   # 保持自定义控件类不被混淆
-    public <init>(android.content.Context, android.util.AttributeSet);
-}
--keepclasseswithmembers class * {# 保持自定义控件类不被混淆
-    public <init>(android.content.Context, android.util.AttributeSet, int);
-}
--keepclassmembers class * extends android.app.Activity { # 保持自定义控件类不被混淆
+
+# 保留在Activity中的方法参数是view的方法，
+# 这样以来我们在layout中写的onClick就不会被影响
+-keepclassmembers class * extends android.app.Activity{
     public void *(android.view.View);
 }
--keepclassmembers enum * {     # 保持枚举 enum 类不被混淆
-    public static **[] values();
-    public static ** valueOf(java.lang.String);
-}
--keep class * implements android.os.Parcelable { # 保持 Parcelable 不被混淆
-    public static final android.os.Parcelable$Creator *;
-}
 
-################common###############
--keep class com.jph.android.entity.** { *; } #实体类不参与混淆
--keep class com.jph.android.view.** { *; } #自定义控件不参与混淆
-
-################baidu map###############
--libraryjars libs/baidumapapi_v3_2_0.jar
--libraryjars libs/locSDK_5.0.jar
--keep class com.baidu.** { *; }
--keep class vi.com.gdi.bgl.android.**{*;}
--dontwarn com.baidu.**
-
-
-################afinal##################
-#-libraryjars libs/afinal_0.5_bin.jar
-#-keep class net.tsz.afinal.** { *; }
-#-keep public class * extends net.tsz.afinal.**
-#-keep public interface net.tsz.afinal.** {*;}
-#-dontwarn net.tsz.afinal.**
-
-################xutils##################
--libraryjars libs/xUtils-2.6.14.jar
--keep class com.lidroid.xutils.** { *; }
--keep public class * extends com.lidroid.xutils.**
--keepattributes Signature
--keepattributes *Annotation*
--keep public interface com.lidroid.xutils.** {*;}
--dontwarn com.lidroid.xutils.**
--keepclasseswithmembers class com.jph.android.entity.** {
-    <fields>;
-    <methods>;
-}
-
-################支付宝##################
--libraryjars libs/alipaysecsdk.jar
--libraryjars libs/alipayutdid.jar
--libraryjars libs/alipaysdk.jar
--keep class com.alipay.android.app.IAliPay{*;}
--keep class com.alipay.android.app.IAlixPay{*;}
--keep class com.alipay.android.app.IRemoteServiceCallback{*;}
--keep class com.alipay.android.app.lib.ResourceMap{*;}
-
-################gson##################
--libraryjars libs/gson-2.2.4.jar
--keep class com.google.gson.** {*;}
-#-keep class com.google.**{*;}
--keep class sun.misc.Unsafe { *; }
--keep class com.google.gson.stream.** { *; }
--keep class com.google.gson.examples.android.model.** { *; }
--keep class com.google.** {
-    <fields>;
-    <methods>;
-}
--keepclassmembers class * implements java.io.Serializable {
-    static final long serialVersionUID;
-    private static final java.io.ObjectStreamField[] serialPersistentFields;
-    private void writeObject(java.io.ObjectOutputStream);
-    private void readObject(java.io.ObjectInputStream);
-    java.lang.Object writeReplace();
-    java.lang.Object readResolve();
-}
--dontwarn com.google.gson.**
-
-
-
-################httpmime/httpcore##########
--libraryjars libs/httpcore-4.3.2.jar
--libraryjars libs/httpmime-4.3.5.jar
--keep class org.apache.http.** {*;}
--dontwarn org.apache.http.**
-
-####################jpush##################
--libraryjars libs/jpush-sdk-release1.7.1.jar
--keep class cn.jpush.** { *; }
--keep public class com.umeng.fb.ui.ThreadView { } #双向反馈功能代码不混淆
--dontwarn cn.jpush.**
--keepclassmembers class * {
-    public <init>(org.json.JSONObject);
-}
- #不混淆R类
--keep public class com.jph.android.R$*{
-    public static final int *;
-}
+# 保留枚举类不被混淆
 -keepclassmembers enum * {
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
 
-####################umeng##################
--libraryjars libs/umeng-analytics-v5.2.4.jar
--keep class com.umeng.analytics.** {*;}
--dontwarn com.umeng.analytics.**
+# 保留我们自定义控件（继承自View）不被混淆
+-keep public class * extends android.view.View{
+    *** get*();
+    void set*(***);
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
 
-#-keep public class * extends com.umeng.**
-#-keep public class * extends com.umeng.analytics.**
-#-keep public class * extends com.umeng.common.**
-#-keep public class * extends com.umeng.newxp.**
--keep class com.umeng.** { *; }
--keep class com.umeng.analytics.** { *; }
--keep class com.umeng.common.** { *; }
--keep class com.umeng.newxp.** { *; }
+# 保留Parcelable序列化类不被混淆
+-keep class * implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator *;
+}
 
+# 保留Serializable序列化的类不被混淆
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient <fields>;
+    !private <fields>;
+    !private <methods>;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+
+# 对于带有回调函数的onXXEvent、**On*Listener的，不能被混淆
 -keepclassmembers class * {
-   public <init>(org.json.JSONObject);
-}
--keep class com.umeng.**
-
--keep public class com.idea.fifaalarmclock.app.R$*{
-    public static final int *;
+    void *(**On*Event);
+    void *(**On*Listener);
 }
 
--keep public class com.umeng.fb.ui.ThreadView {
+# webView处理，项目中没有使用到webView忽略即可
+-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+    public *;
+}
+-keepclassmembers class * extends android.webkit.webViewClient {
+    public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);
+    public boolean *(android.webkit.WebView, java.lang.String);
+}
+-keepclassmembers class * extends android.webkit.webViewClient {
+    public void *(android.webkit.webView, jav.lang.String);
 }
 
--dontwarn com.umeng.**
-
--dontwarn org.apache.commons.**
-
--keep public class * extends com.umeng.**
-
--keep class com.umeng.** {*; }
-
-####################universal-image-loader########
--libraryjars libs/universal-image-loader-1.9.3.jar
--keep class com.nostra13.universalimageloader.** {*;}
--dontwarn com.nostra13.universalimageloader.**
-
-
-####################zxing#####################
--libraryjars libs/zxing.jar
--libraryjars libs/zxing_apply.jar
+#scan
+##zxing
 -keep class com.google.zxing.** {*;}
 -dontwarn com.google.zxing.**
 
-####################BASE64Decoder##################
--libraryjars libs/sun.misc.BASE64Decoder.jar
-
-####################support.v4#####################
--libraryjars libs/android-support-v4.jar
--keep class android.support.v4.** { *; }
--dontwarn android.support.v4.**
-
-###################other####################
-# slidingmenu 的混淆
--dontwarn com.jeremyfeinstein.slidingmenu.lib.**
--keep class com.jeremyfeinstein.slidingmenu.lib.** { *; }
-# ActionBarSherlock混淆
--dontwarn com.actionbarsherlock.**
--keep class com.actionbarsherlock.** { *; }
--keep interface com.actionbarsherlock.** { *; }
--keep class * extends java.lang.annotation.Annotation { *; }
--keepclasseswithmembernames class * {
-    native <methods>;
-}
-
--keep class com.jph.android.entity.** {
-    <fields>;
-    <methods>;
-}
-
--dontwarn android.support.**
--dontwarn com.slidingmenu.lib.app.SlidingMapActivity
--keep class android.support.** { *; }
--keep class com.actionbarsherlock.** { *; }
--keep interface com.actionbarsherlock.** { *; }
--keep class com.slidingmenu.** { *; }
--keep interface com.slidingmenu.** { *; }
+#network
+##gson
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.stream.**{ *; }
+-keep class com.google.gson.examples.android.model.**{ *; }
+-keep class com.google.gson.**{ *;}
+##okhttp3
+-dontwarn okio.**
+-dontwarn okhttp3.**
+-dontwarn com.squareup.**
+-dontwarn javax.annotation.**
+-dontwarn org.conscrypt.**
+###A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+-dontwarn javax.lang.model.element.Element
+-keep class javax.lang.model.element.Element

@@ -3,6 +3,7 @@ package com.xh2015.fmtool;
 import android.app.Application;
 import android.content.Context;
 
+import com.fm.tool.network.utils.NetWorkUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -20,6 +21,8 @@ public class AppApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mRefWatcher = LeakCanary.install(this);
+        //初始化网络请求框架
+        NetWorkUtils.initOkhttp(getApplicationContext());
     }
 
     public static RefWatcher getRefWatcher(Context context) {

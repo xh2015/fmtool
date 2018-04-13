@@ -9,9 +9,24 @@
         android:id="@+id/scan_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="8dp"
         android:background="#cccccc"
         android:padding="10dp"
         android:text="二维码扫描"/>
+
+    <Button
+        android:id="@+id/network_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="#666666"
+        android:padding="10dp"
+        android:text="网络请求"/>
+
+    <TextView
+        android:id="@+id/info_tv"
+        android:layout_width="match_parent"
+        android:padding="4dp"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
