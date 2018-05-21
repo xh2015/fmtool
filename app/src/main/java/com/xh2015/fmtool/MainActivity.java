@@ -23,12 +23,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mInfo = (TextView) findViewById(R.id.info_tv);
+
         findViewById(R.id.scan_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ScanActivity.class));
             }
         });
+
         ScanActivity.setOnScanResultListener(new ScanActivity.OnScanResultListener() {
             @Override
             public void success(String result) {
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "扫描结果:" + result, Toast.LENGTH_LONG).show();
             }
         });
+
         findViewById(R.id.network_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
                                         + " /n code:" + response.code());
                             }
                         });
+            }
+        });
+
+        findViewById(R.id.photo_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PhotoActivity.class));
             }
         });
 

@@ -1,1 +1,1 @@
-include ':app', ':scan', ':network'
+include ':app', ':scan', ':network', ':imagepicker'

@@ -19,6 +19,7 @@ allprojects {
         maven {
             url "http://192.168.1.146:8080/nexus/content/repositories/com.fm.app.lib/"
         }
+        maven { url 'https://jitpack.io' }
     }
 }
 

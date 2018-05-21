@@ -9,19 +9,28 @@
         android:id="@+id/scan_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="4dp"
         android:background="#cccccc"
-        android:padding="10dp"
+        android:padding="4dp"
         android:text="二维码扫描"/>
 
     <Button
         android:id="@+id/network_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="4dp"
         android:background="#666666"
-        android:padding="10dp"
+        android:padding="4dp"
         android:text="网络请求"/>
+
+    <Button
+        android:id="@+id/photo_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="#cccccc"
+        android:padding="4dp"
+        android:text="选择图片"/>
 
     <TextView
         android:id="@+id/info_tv"
