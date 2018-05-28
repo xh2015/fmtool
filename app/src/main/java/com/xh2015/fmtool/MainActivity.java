@@ -3,14 +3,15 @@ package com.xh2015.fmtool;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.LogUtils;
+import com.fm.tool.network.callback.JsonCallback;
+import com.fm.tool.network.model.BaseResponse;
 import com.fm.tool.scan.ScanActivity;
 import com.lzy.okgo.OkGo;
-import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,14 +43,11 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.network_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OkGo.<String>get("http://apis.juhe.cn/lottery/types")
-                        .execute(new StringCallback() {
+                OkGo.<BaseResponse<Logon>>get("http://www.wanandroid.com/tools/mockapi/6092/test1")
+                        .execute(new JsonCallback<BaseResponse<Logon>>() {
                             @Override
-                            public void onSuccess(Response<String> response) {
-                                Log.e(TAG, response.body());
-                                mInfo.setText("body:" + response.body()
-                                        + "  /n message:" + response.message()
-                                        + " /n code:" + response.code());
+                            public void onSuccess(Response<BaseResponse<Logon>> response) {
+                                LogUtils.e(response.body().data);
                             }
                         });
             }
