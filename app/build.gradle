@@ -69,7 +69,7 @@ dependencies {
     //二维码扫描
     compile 'com.fm.app.lib:scan:1.0.0'
     //网络请求
-    compile 'com.fm.app.lib:network:1.0.0'
+    compile 'com.fm.app.lib:network:1.0.1'
     //图片选择
     compile 'com.fm.app.lib:imagepicker:1.0.0'
 }

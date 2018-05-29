@@ -30,7 +30,7 @@ android {
                 authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
             }
 
-            pom.version = "1.0.0"
+            pom.version = "1.0.1"
             pom.artifactId = "network"
             pom.groupId = GROUP_ID
         }

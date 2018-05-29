@@ -64,22 +64,11 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
                 //有数据类型，表示有data
                 BaseResponse baseResponse = gson.fromJson(jsonReader, type);
                 response.close();
-                int code = baseResponse.code;
                 int fmcode = baseResponse.fmcode;
                 if (fmcode == 0) {
                     return (T) baseResponse;
-                } else if (fmcode == 10003) {
-                    throw new IllegalStateException("用户token失效");
-                } else if (fmcode == 10004) {
-                    throw new IllegalStateException("用户名或密码错误");
-                } else if (fmcode == 10005) {
-                    throw new IllegalStateException("app版本不正确");
-                } else if (fmcode == 10006) {
-                    throw new IllegalStateException("app类型不正确");
                 } else {
-                    throw new IllegalStateException("错误代码 code：" + code
-                            + " fmcode：" + fmcode
-                            + "，错误信息：" + baseResponse.message);
+                    throw new IllegalStateException(fmcode + "");
                 }
             }
         }
