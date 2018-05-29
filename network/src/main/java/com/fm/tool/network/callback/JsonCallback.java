@@ -1,7 +1,5 @@
 package com.fm.tool.network.callback;
 
-import android.text.TextUtils;
-
 import com.fm.tool.network.model.BaseResponse;
 import com.fm.tool.network.model.SimpleResponse;
 import com.google.gson.Gson;
@@ -17,7 +15,6 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-import okhttp3.Headers;
 import okhttp3.ResponseBody;
 
 ;
@@ -116,14 +113,5 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
             String message = exception.getMessage();
             System.out.println(message);
         }
-
-        //登录toke失效统一处理
-        Headers headers = response.headers();
-        String errorMsg = headers.get("WWW-Authenticate");
-        if (!TextUtils.isEmpty(errorMsg)) {
-            solveToken(errorMsg);
-        }
     }
-
-    public void solveToken(String errorMsg){}
 }
