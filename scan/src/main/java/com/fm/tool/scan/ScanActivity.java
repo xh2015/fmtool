@@ -147,6 +147,9 @@ public class ScanActivity extends FragmentActivity implements QRCodeView.Delegat
     }
 
     @Override
+    public void onCameraAmbientBrightnessChanged(boolean isDark) {}
+
+    @Override
     public void onScanQRCodeOpenCameraError() {
         Log.e(TAG, "打开相机出错");
         finish();

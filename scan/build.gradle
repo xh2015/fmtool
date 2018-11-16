@@ -42,5 +42,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$supportVersion"
     //二维码扫描 https://github.com/bingoogolapple/BGAQRCode-Android
-    compile 'cn.bingoogolapple:bga-qrcode-zxing:1.2.1'
+    compile 'cn.bingoogolapple:bga-qrcode-zxing:1.3.4'
 }
