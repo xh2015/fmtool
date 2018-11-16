@@ -121,7 +121,7 @@ public class ScanActivity extends FragmentActivity implements QRCodeView.Delegat
     @Override
     protected void onStart() {
         super.onStart();
-        mZXingView.startSpot();
+        mZXingView.startSpotAndShowRect();
     }
 
     @Override
