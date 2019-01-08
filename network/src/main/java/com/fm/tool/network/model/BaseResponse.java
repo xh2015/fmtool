@@ -26,7 +26,6 @@ public class BaseResponse<T> implements Serializable{
     public String devmsg;
     public String msgLevel;
     public T data;
-    public int status;
 
     @Override
     public String toString() {
@@ -38,7 +37,6 @@ public class BaseResponse<T> implements Serializable{
                 ", devmsg='" + devmsg + '\'' +
                 ", msgLevel='" + msgLevel + '\'' +
                 ", data=" + data +
-                ", status=" + status +
                 '}';
     }
 }
