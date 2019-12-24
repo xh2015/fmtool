@@ -60,7 +60,7 @@ public class NetWorkUtils {
         //添加请求头部
         HttpHeaders headers = new HttpHeaders();
         headers.put("Device-Type", "android");
-        headers.put("Device-Id", AppAndDeviceUtils.getAndroidID(context));
+        headers.put("Device-Id", "1234567890");
 
         //添加请求url追加信息（参数）
         HttpParams params = new HttpParams();
