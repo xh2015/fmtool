@@ -155,6 +155,8 @@
   **[] $VALUES;
   public *;
 }
+-keep class com.cktim.camera2library.** { *; }
+-dontwarn com.cktim.camera2library.**
 -keep class com.blankj.utilcode.** { *; }
 -keepclassmembers class com.blankj.utilcode.** { *; }
 -dontwarn com.blankj.utilcode.**
