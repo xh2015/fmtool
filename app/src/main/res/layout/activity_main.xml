@@ -6,6 +6,15 @@
     android:orientation="vertical">
 
     <Button
+        android:id="@+id/video_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="#cccccc"
+        android:padding="4dp"
+        android:text="录制视频"/>
+
+    <Button
         android:id="@+id/scan_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

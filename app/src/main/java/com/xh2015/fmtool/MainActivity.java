@@ -8,6 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.cktim.camera2library.Camera2Config;
+import com.cktim.camera2library.camera.Camera2RecordActivity;
 import com.fm.tool.network.callback.JsonCallback;
 import com.fm.tool.network.model.BaseResponse;
 import com.fm.tool.scan.ScanActivity;
@@ -29,6 +31,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ScanActivity.class));
+            }
+        });
+
+        findViewById(R.id.video_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //配置Camera2相关参数，
+                Camera2Config.RECORD_MAX_TIME = 8;
+                Camera2Config.RECORD_ASC = true;
+                Camera2Config.RECORD_MIN_TIME = 2;
+                Camera2Config.RECORD_PROGRESS_VIEW_COLOR = R.color.colorAccent;
+                Camera2Config.PREVIEW_MAX_HEIGHT = 1300;
+                Camera2Config.ENABLE_CAPTURE = false;
+
+                Intent intent = new Intent(MainActivity.this, Camera2RecordActivity.class);
+                startActivity(intent);
             }
         });
 

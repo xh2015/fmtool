@@ -114,6 +114,7 @@ public class Camera2RecordActivity extends AppCompatActivity implements TextureV
     //录像
     private static final int MAX_RECORD_TIME = Camera2Config.RECORD_MAX_TIME;//最大录制时长,默认10S
     private static final int MIN_RECORD_TIME = Camera2Config.RECORD_MIN_TIME;//最小录制时长，默认2S
+    private static final boolean RECORD_ASC = Camera2Config.RECORD_ASC;//录制时间显示方式
     private boolean isRecording = false;//是否正在录制视频
     private boolean isStop = false;//是否停止过了MediaRecorder
     private int currentTime;
@@ -639,7 +640,11 @@ public class Camera2RecordActivity extends AppCompatActivity implements TextureV
             mProgressView.setIsStart(true);
             //显示时间
             tvBalanceTime.setVisibility(View.VISIBLE);
-            tvBalanceTime.setText(MAX_RECORD_TIME - currentTime + "s");
+            if(RECORD_ASC){
+                tvBalanceTime.setText(currentTime + "s");
+            }else{
+                tvBalanceTime.setText(MAX_RECORD_TIME - currentTime + "s");
+            }
 
             //如果超过最大录制时长则自动结束
             if (currentTime > MAX_RECORD_TIME) {
