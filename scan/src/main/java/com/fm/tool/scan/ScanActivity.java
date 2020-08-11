@@ -19,6 +19,7 @@ import com.fm.tool.scan.utils.StatusBarUtils;
 import com.fm.tool.scan.utils.VibrateUtils;
 import com.fm.tool.scan.view.FMIconfontView;
 
+import cn.bingoogolapple.qrcode.core.BarcodeType;
 import cn.bingoogolapple.qrcode.core.QRCodeView;
 import cn.bingoogolapple.qrcode.zxing.QRCodeDecoder;
 import cn.bingoogolapple.qrcode.zxing.ZXingView;
@@ -72,6 +73,7 @@ public class ScanActivity extends FragmentActivity implements QRCodeView.Delegat
         mFlashlight.setOnClickListener(this);
         mPic.setOnClickListener(this);
         mZXingView.setDelegate(this);
+        mZXingView.setType(BarcodeType.ALL, null); // 识别所有类型的码
         mPic.setVisibility(AppUtils.isDebug() ? View.VISIBLE : View.GONE);
     }
 
