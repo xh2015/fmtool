@@ -28,7 +28,11 @@ public class NetWorkUtils {
      * 初始化网络请求参数
      */
     public static void initOkhttp(Context context) {
-        initOkhttp(context, OkGo.DEFAULT_MILLISECONDS);
+        initOkhttp(context, HttpLoggingInterceptor.Level.NONE);
+    }
+
+    public static void initOkhttp(Context context, HttpLoggingInterceptor.Level logLevel) {
+        initOkhttp(context, OkGo.DEFAULT_MILLISECONDS, logLevel);
     }
 
 
@@ -36,8 +40,8 @@ public class NetWorkUtils {
      * @param context             上下文
      * @param timeOutMilliseconds 超时时间 单位为毫秒
      */
-    public static void initOkhttp(Context context, long timeOutMilliseconds) {
-        initOkhttp(context, timeOutMilliseconds, null);
+    public static void initOkhttp(Context context, long timeOutMilliseconds, HttpLoggingInterceptor.Level logLevel) {
+        initOkhttp(context, timeOutMilliseconds, null, logLevel);
     }
 
     /**
@@ -45,7 +49,7 @@ public class NetWorkUtils {
      * @param sslFileName https 签名文件名 在 assets 文件夹下
      */
     public static void initOkhttp(Context context, String sslFileName) {
-        initOkhttp(context, OkGo.DEFAULT_MILLISECONDS, sslFileName);
+        initOkhttp(context, OkGo.DEFAULT_MILLISECONDS, sslFileName, HttpLoggingInterceptor.Level.NONE);
     }
 
     /**
@@ -53,7 +57,7 @@ public class NetWorkUtils {
      * @param timeOutMilliseconds 超时时间 单位毫秒
      * @param sslFileName         https 签名文件名 在 assets 文件夹下
      */
-    public static void initOkhttp(Context context, long timeOutMilliseconds, String sslFileName) {
+    public static void initOkhttp(Context context, long timeOutMilliseconds, String sslFileName, HttpLoggingInterceptor.Level logLevel) {
         if (context == null) {
             throw new NullPointerException("context should not null");
         }
@@ -70,7 +74,7 @@ public class NetWorkUtils {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         //log相关
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor("OkGo");
-        loggingInterceptor.setPrintLevel(HttpLoggingInterceptor.Level.BODY);    //log打印级别，决定了log显示的详细程度
+        loggingInterceptor.setPrintLevel(logLevel);    //log打印级别，决定了log显示的详细程度
         loggingInterceptor.setColorLevel(Level.INFO);                                               //log颜色级别，决定了log在控制台显示的颜色
         builder.addInterceptor(loggingInterceptor);
 
