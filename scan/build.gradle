@@ -42,5 +42,5 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api "com.android.support:appcompat-v7:$supportVersion"
     //二维码扫描 https://github.com/bingoogolapple/BGAQRCode-Android
-    api 'com.github.xh2015.BGAQRCode-Android:zxing:1.3.7.1'
+    api 'com.github.xh2015.BGAQRCode-Android:zxing:1.3.7.2'
 }
