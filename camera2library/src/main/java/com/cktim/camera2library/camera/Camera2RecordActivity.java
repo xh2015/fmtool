@@ -660,6 +660,7 @@ public class Camera2RecordActivity extends AppCompatActivity implements TextureV
         if (TextUtils.isEmpty(videoSavePath)) {
             return;
         }
+        Log.e("Gary:","======录制结束啦");
         try {
             ivTakePhoto.setBackgroundResource(R.drawable.ic_capture_btn_start);
             //结束ProgressView
@@ -672,16 +673,19 @@ public class Camera2RecordActivity extends AppCompatActivity implements TextureV
             //判断录制时常是不是小于指定秒数
             if (currentTime <= MIN_RECORD_TIME) {
                 Toast.makeText(this, "录制时间过短", Toast.LENGTH_LONG).show();
+                //录制完成后重置录制界面
+                showResetCameraLayout();
             } else {
                 //正常录制结束，跳转到完成页，这里你也可以自己处理
                 Intent intent = new Intent();
                 intent.putExtra(Camera2Config.INTENT_PATH_SAVE_VIDEO, videoSavePath);
                 setResult(RESULT_OK, intent);
+                //录制完成后重置录制界面
+                if (mCameraDevice != null) {
+                    mCameraDevice.close();
+                }
                 finish();
             }
-
-            //录制完成后重置录制界面
-            showResetCameraLayout();
 
         } catch (Exception e) {
             //这里抛出的异常是由于MediaRecorder开关时间过于短暂导致，直接按照录制时间短处理
